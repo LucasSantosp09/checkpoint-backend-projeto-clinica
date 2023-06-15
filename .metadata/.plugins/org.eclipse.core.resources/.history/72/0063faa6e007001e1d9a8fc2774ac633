@@ -1,0 +1,9 @@
+package br.com.treinaweb.twprojetos.repositorios;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.treinaweb.twprojetos.entidades.Consulta;
+
+public interface ConsultaRepositorio extends JpaRepository<Consulta, Long> {
+
+}

@@ -1,0 +1,68 @@
+package br.com.treinaweb.twprojetos.controles;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.treinaweb.twprojetos.entidades.Dentista;
+import br.com.treinaweb.twprojetos.repositorios.DentistaRepositorio;
+
+@Controller
+@RequestMapping("/consultas")
+public class ConsultaControle {
+	
+	@Autowired
+	private DentistaRepositorio dentistaRepositorio;
+	
+	@GetMapping
+	public ModelAndView home () {
+		ModelAndView modelAndView = new ModelAndView("dentista/home");
+		
+		modelAndView.addObject("dentistas", dentistaRepositorio.findAll());
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/{id}")
+	public ModelAndView detalhes(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("dentista/detalhes");
+		
+		modelAndView.addObject("dentista", dentistaRepositorio.getOne(id));
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/cadastrar")
+	public ModelAndView cadastrar() {
+		ModelAndView modelAndView = new ModelAndView("dentista/formulario");
+		modelAndView.addObject("dentista", new Dentista());
+		return modelAndView;
+	}
+	
+	@PostMapping({"/cadastrar", "/{id}/editar"})
+	public String salvar(Dentista dentista) {
+		dentistaRepositorio.save(dentista);
+		
+		return "redirect:/dentistas";
+	}
+	
+	@GetMapping("/{id}/editar")
+	public ModelAndView editar(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("/dentista/formulario");
+		modelAndView.addObject("dentista", dentistaRepositorio.getOne(id));		
+		return modelAndView;
+	}
+	
+	
+	@GetMapping("{id}/excluir")
+	public String excluir(@PathVariable Long id) {
+		dentistaRepositorio.deleteById(id);		
+		return "redirect:/dentistas";
+	}
+	
+	
+}

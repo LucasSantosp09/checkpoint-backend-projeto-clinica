@@ -1,0 +1,113 @@
+<!-- Main Sidebar Container -->
+<aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a th:href="@{/}" class="brand-link">
+
+    <span class="brand-text font-weight-light">Projeto Clínica</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+       
+              <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Usuários
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/pacientes/cadastrar}" class="nav-link">
+                <i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/pacientes}" class="nav-link">
+                <i class="fas fa-table nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+       <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Pacientes
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/pacientes/cadastrar}" class="nav-link">
+                <i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/pacientes}" class="nav-link">
+                <i class="fas fa-table nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+               <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Dentistas
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/pacientes/cadastrar}" class="nav-link">
+                <i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/pacientes}" class="nav-link">
+                <i class="fas fa-table nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+                <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-calendar"></i>
+            <p>
+              Consultas
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/projetos/cadastrar}" class="nav-link">
+                <i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/projetos/}" class="nav-link">
+                <i class="fas fa-table nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

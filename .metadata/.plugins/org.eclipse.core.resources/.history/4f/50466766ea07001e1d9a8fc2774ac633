@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, ~{::styles}, ~{::scripts})}">
+
+<th:block th:fragment="styles">
+	<link rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
+</th:block>
+
+<head>
+	<title>[[${consulta.id == null ? 'Novo' : 'Editar'}]] Consulta</title>
+</head>
+
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<!-- /.card-header -->
+					<!-- form start -->
+					<form method="POST" th:object="${consulta}">
+						<div class="card-body">
+							<fieldset>
+								<legend>Consulta</legend>
+
+								<input type="hidden" th:field="*{id}">
+
+
+								<div class="row">
+									<!--
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label>Paciente</label>
+											<select th:field="*{paciente}" class="form-control select2bs4"
+												style="width: 100%;">
+												<option th:each="Paciente : ${pacientes}" th:text="${paciente.nome}"
+													th:value="${paciente.id}"></option>
+											</select>
+										</div>
+									</div>
+									-->
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label>Dentista</label>
+											<select th:field="*{dentista}" class="form-control select2bs4"
+												style="width: 100%;">
+												<option th:each="dentista : ${dentistas}" th:text="${dentista.nome}"
+													th:value="${dentista.id}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+							</fieldset>
+
+
+						</div>
+						<!-- /.card-body -->
+
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<th:block th:fragment="scripts">
+		<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script>
+			$('.select2bs4').select2({
+				theme: 'bootstrap4'
+			})
+
+			$('#cpf').mask('000.000.000-00', {reverse: true, placeholder: "___.___.___-__"});
+			$('#telefone').mask('(00) 00000-0000', {placeholder: "(__) _____-____"});
+			$('#endereco\\.cep').mask('00000-000', {placeholder: "_____-___"});
+		</script>
+	</th:block>
+</body>
+
+</html>

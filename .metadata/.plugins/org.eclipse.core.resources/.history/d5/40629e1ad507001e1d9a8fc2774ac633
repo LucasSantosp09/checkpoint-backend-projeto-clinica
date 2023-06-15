@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, ~{::styles}, ~{::scripts})}">
+
+<th:block th:fragment="styles">
+	<link rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
+</th:block>
+
+<head>
+	<title>[[${paciente.id == null ? 'Novo' : 'Editar'}]] Pacinte</title>
+</head>
+
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<!-- /.card-header -->
+					<!-- form start -->
+					<form method="POST" th:object="${paciente}">
+						<div class="card-body">
+							<fieldset>
+								<legend>Dados Pessoais</legend>
+
+								<input type="hidden" th:field="*{id}">
+
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="nome">Nome</label>
+											<input type="text" class="form-control"
+												placeholder="Lucas" th:field="*{nome}">
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="sobrenome">Sobrenome</label>
+											<input type="text" class="form-control"
+												placeholder="Santos Pereira" th:field="*{sobrenome}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<label for="nome">Endereço</label>
+											<input type="text" class="form-control"
+												placeholder="Av Amazonas, Nº 123 - Centro - Betim-MG" th:field="*{endereco}">
+										</div>
+									</div>
+								</div>
+							</fieldset>
+
+
+						</div>
+						<!-- /.card-body -->
+
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<th:block th:fragment="scripts">
+		<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script>
+			$('.select2bs4').select2({
+				theme: 'bootstrap4'
+			})
+
+			$('#cpf').mask('000.000.000-00', {reverse: true, placeholder: "___.___.___-__"});
+			$('#telefone').mask('(00) 00000-0000', {placeholder: "(__) _____-____"});
+			$('#endereco\\.cep').mask('00000-000', {placeholder: "_____-___"});
+		</script>
+	</th:block>
+</body>
+
+</html>

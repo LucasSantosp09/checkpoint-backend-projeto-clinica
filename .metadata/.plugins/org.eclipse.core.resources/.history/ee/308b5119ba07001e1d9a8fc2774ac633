@@ -1,0 +1,5 @@
+package br.com.treinaweb.twprojetos.repositorios;
+
+public class PacienteRepositorio {
+
+}

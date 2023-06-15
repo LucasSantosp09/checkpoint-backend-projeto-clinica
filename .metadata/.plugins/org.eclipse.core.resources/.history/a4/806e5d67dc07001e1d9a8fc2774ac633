@@ -1,0 +1,58 @@
+package br.com.treinaweb.twprojetos.entidades;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+public class Consulta {
+	
+	
+	@Column(name = "data_consulta", nullable = false)
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate dataConsulta;
+
+	@ManyToOne
+	@JoinColumn(name = "paciente_id_fk")
+	private Paciente paciente;
+	
+	@ManyToOne
+	@JoinColumn(name = "dentista_id_fk")
+	private Dentista dentista;
+
+	
+	
+	
+
+
+	public LocalDate getDataConsulta() {
+		return dataConsulta;
+	}
+
+	public void setDataConsulta(LocalDate dataConsulta) {
+		this.dataConsulta = dataConsulta;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public Dentista getDentista() {
+		return dentista;
+	}
+
+	public void setDentista(Dentista dentista) {
+		this.dentista = dentista;
+	}
+	
+	
+	
+}

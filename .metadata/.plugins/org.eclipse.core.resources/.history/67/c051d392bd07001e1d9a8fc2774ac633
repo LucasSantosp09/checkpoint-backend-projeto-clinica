@@ -1,0 +1,36 @@
+package br.com.treinaweb.twprojetos.controles;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.treinaweb.twprojetos.repositorios.PacienteRepositorio;
+
+@Controller
+@RequestMapping("/pacientes")
+public class PacienteControle {
+	
+	@Autowired
+	private PacienteRepositorio pacienteRepositorio;
+	
+	@GetMapping
+	public ModelAndView home () {
+		ModelAndView modelAndView = new ModelAndView("paciente/home");
+		
+		modelAndView.addObject("pacientes", pacienteRepositorio.findAll());
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/{id}")
+	public ModelAndView detalhes(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("paciente/detalhes");
+		
+		modelAndView.addObject("paciente", pacienteRepositorio.getOne(id));
+		
+		return modelAndView;
+	}
+}

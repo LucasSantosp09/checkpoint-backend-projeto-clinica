@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
+<head>
+  <title>Pacientes</title>
+</head>
+<body>
+  <main>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Sobrenome</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="paciente : ${pacientes}">
+                  <td th:text="${paciente.id}">183</td>
+                  <td th:text="${paciente.nome}">Clara Giovana Daniela Duarte</td>
+                  <td th:text="${paciente.sobrenome}">clara_giovana@gmail.com</td>
+
+
+                  <td>
+                    <div class="btn-group">
+                      <a type="button" data-toggle="popover" data-placement="top" data-content="Detalhes" data-trigger="hover" class="btn btn-primary" th:href="@{/pacientes/{id} (id=${paciente.id})}">
+                        <i class="fas fa-eye"></i>
+                      </a>
+                      <a type="button" data-toggle="popover" data-placement="top" data-content="Editar" data-trigger="hover" class="btn btn-warning" th:href="@{/pacientes/{id}/editar (id=${paciente.id})}">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <a 
+                        type="button" data-toggle="popover" data-placement="top" 
+                        data-content="Remover" data-trigger="hover" class="btn btn-danger" 
+                        th:href="@{/pacientes/{id}/excluir (id=${paciente.id})}" 
+                        onclick="return confirm('Tem certeza que deseja excluir o paciente?');"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  <td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <th:block th:fragment="scripts">
+    <script>
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+    </script>
+  </th:block>
+</body>
+</html>

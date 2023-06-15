@@ -1,0 +1,17 @@
+package br.com.treinaweb.twprojetos.entidades;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+public class Consulta {
+	
+	
+	@Column(name = "data_incio", nullable = false)
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate dataIncio;
+
+}

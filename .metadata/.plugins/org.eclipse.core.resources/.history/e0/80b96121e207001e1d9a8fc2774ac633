@@ -1,0 +1,170 @@
+package br.com.treinaweb.twprojetos.entidades;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+public class Paciente {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(nullable = false, length = 80)
+	private String nome;
+	
+	@Column(nullable = false, length = 80)
+	private String sobrenome;
+
+	
+	@Column(nullable = false)
+	private String endereco;
+	
+	
+	@Column(nullable = false, length = 20)
+	private String rg;
+	
+	@Column(name = "data_alta")
+	@DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE)
+	private LocalDate dataAlta;
+	
+	@OneToMany(mappedBy = "paciente")
+	private List<Consulta> consulta;
+
+	
+	public Paciente() {
+	
+	}
+	
+	
+
+
+
+
+	public Paciente(Long id, String nome, String sobrenome, String endereco, String rg, LocalDate dataAlta) {
+		this.id = id;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.endereco = endereco;
+		this.rg = rg;
+		this.dataAlta = dataAlta;
+	}
+
+
+
+
+
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+
+
+
+
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+
+
+
+
+
+	public String getRg() {
+		return rg;
+	}
+
+
+
+
+
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+
+
+
+
+
+	public LocalDate getDataAlta() {
+		return dataAlta;
+	}
+
+
+
+
+
+
+	public void setDataAlta(LocalDate dataAlta) {
+		this.dataAlta = dataAlta;
+	}
+
+
+
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Paciente [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + "]";
+	}
+	
+	
+	
+}
